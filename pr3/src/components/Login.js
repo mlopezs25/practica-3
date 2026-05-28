@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +17,10 @@ export default function Login() {
       })
       .then((res) => {
         console.log("LOGIN OK:", res.data);
-        alert("Login correcto. Token: " + res.data.session_token);
+
+        sessionStorage.setItem("token", res.data.session_token);
+
+        navigate("/questions");
       })
       .catch((err) => {
         console.error(err);
@@ -47,3 +52,4 @@ export default function Login() {
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // evita recargar la página
+    e.preventDefault(); 
 
     axios
       .post("http://localhost:8000/api/v2/users", {
